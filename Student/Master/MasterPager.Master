@@ -1,0 +1,85 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPager.master.cs" Inherits="Student.Master.MasterPager" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <%--<title></title>--%>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="/App_Themes/Main/bulma.min.css">
+</head>
+<body>
+    <input type="hidden" id="control" />
+    <%--<form id="form1" runat="server">--%>
+    <div class="tile is-ancestor">
+      <div class="tile is-vertical is-12">
+        <div class="tile">
+          <div class="tile is-parent is-vertical">
+            <article class="tile is-child notification" style="background-image: linear-gradient(to right, #f7a7fc , #c683fb);">
+                <div class="title-content">
+                    <div class="title-left">
+                        <p class="title">小学生管理系统...</p>
+                    </div>
+
+                    <div class="title-right">
+                        欢迎您，智取棋！  <button class="button is-link is-light is-small">退出</button>
+                    </div>
+                </div>
+            </article>
+          </div>
+        </div>
+       </div>
+     </div>
+
+    <div id="content">
+        <div id="cont-left">
+            <aside class="menu">
+      <p class="menu-label">
+        General
+      </p>
+      <ul class="menu-list">
+        <li id="btn"><a  href="/View/Query/StuQuery.aspx">学生列表</a></li>
+        <li><a href="/View/Add/StuAdd.aspx">添加学生</a></li>
+      </ul>
+      <p class="menu-label">
+        Admin
+      </p>
+      <ul class="menu-list">
+        <li><a href="/View/Admin/AdminSetting.aspx">修改密码</a></li>
+      </ul>
+    </aside>
+        </div>
+        <div id="cont-right">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>小学生管理系统</strong> by <a href="https://github.com/teenyda">Teenyda</a>. The source code is licensed
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. © 2020 Designed.
+        </p>
+      </div>
+    </footer>
+
+        <div class="modal" id="myModal">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <!-- Any other Bulma elements you want -->
+              hello
+          </div>
+          <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+    <%--</form>--%>
+
+    <script src="/Js/jquery-3.5.1.min.js"></script>
+    <script src="/Js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+    color: #fafafa;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+
+article .title {
+    color: #fafafa;
+}
+#content{
+    display: flex;
+    /* 默认最小屏幕样式 列排版 */
+    width: 100%;
+    margin-top: -25px;
+    min-height: 500px;
+}
+
+#cont-left{
+    width: 20%;
+    background-color: #f7a7fc;
+    text-align: center;
+    padding-top: 30px;
+    
+}
+
+.menu-list a{
+    color: #8754fa;
+    margin: 0 20px;
+
+}
+.menu-label {
+    color: #d18bfb;
+}
+#cont-right{
+    flex: auto;
+    background-color: #f7a7fc;
+    border-left: 1px solid #e89cfc;
+    width: 100%;
+}
+.footer{
+    background-color: #ed9ffc;
+}
+.footer a{
+    color: #ff5ceb;
+}
+
+#cont-left a:hover{
+    background-color: #8754fa;
+    color: #f7a7fc;
+}
+
+.stu-item{
+    margin: 50px;
+    width: 90%;
+    margin: 20px auto;
+    box-shadow: 0 0 5px #ff8ef1;
+  	-webkit-box-shadow: 0 0 5px #ff8ef1;
+	-moz-box-shadow: 0 0 5px #ff8ef1;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #f7a7fc , #c683fb);
+}
+.stu-item img {
+    margin-top: 15px;
+    margin-left: 15px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #333;
+}
+.stu-item:hover{
+	box-shadow: 0 0 10px rgba(198,131,251,0.8);
+	-webkit-box-shadow: 0 0 10px rgba(198,131,251,0.8);
+	-moz-box-shadow: 0 0 10px rgba(198,131,251,0.8);
+}
+
+.info{
+    display: inline-block;
+    width: 240px;
+    overflow: hidden; /*自动隐藏文字*/
+    text-overflow: ellipsis;/*文字隐藏后添加省略号*/
+    white-space: nowrap;/*强制不换行*/
+    color: #423939;
+    font-size: 14px;
+}
+
+.info p{
+    display: block;
+    margin: 10px;
+}
+.span-txt{
+    background-color: #ff58db;
+    padding: 5px;
+    border-radius: 5px;
+}
+.btn-op{
+    display: grid;
+}
+
+#stu-form{
+    width: 500px;
+    margin: 50px;
+}
+
+.title-content{
+    display: flex;
+    flex-direction: row;
+}
+.title-left{
+    flex: auto;
+}
+.title-right{
+    line-height: 30px;
+}
+
+
+/*#cont-left a{
+    display: block;
+    margin: 20px;
+    height: 40px;
+    line-height: 40px;
+    text-decoration: none;
+    background-color: silver;
+}
+*/
