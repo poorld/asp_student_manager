@@ -17,8 +17,6 @@ namespace Student.Service.Query
         protected void Page_Load(object sender, EventArgs e)
         {
            
-            
-
 
         }
     }

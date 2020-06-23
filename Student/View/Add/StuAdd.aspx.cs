@@ -18,9 +18,20 @@ namespace Student.Service.Add
 
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
-            Control c = this.Master.FindControl("control");
-        }
+            string action = string.Empty;
+            string id = string.Empty;
+            try
+            {
+                action = Request.QueryString["action"].ToString();
+                id = Request.QueryString["id"].ToString();
+            }catch(Exception ex){
 
+            }
+            if(!string.IsNullOrEmpty(action))
+                stuSett.Value = action;
+            if (!string.IsNullOrEmpty(action) && !string.IsNullOrEmpty(id))
+                stuSett.Value = id;
+        }
        
         
     }

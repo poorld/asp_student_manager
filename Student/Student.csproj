@@ -112,7 +112,6 @@
     <Content Include="View\Add\StuAdd.aspx" />
     <Content Include="View\Delete\StuDelete.aspx" />
     <Content Include="View\Query\StuQuery.aspx" />
-    <Content Include="View\Update\StuUpdate.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -120,10 +119,12 @@
     <Compile Include="Common\Attributes\TableAliasAttribute.cs" />
     <Compile Include="Common\Attributes\TableFieldAttribute.cs" />
     <Compile Include="Common\Dao\CommonDao.cs" />
+    <Compile Include="Common\DB\SQLConfig.cs" />
     <Compile Include="Common\Entity\AdminEntity.cs" />
     <Compile Include="Common\Entity\StudentEntity.cs" />
     <Compile Include="Common\Entity\TableEntity.cs" />
     <Compile Include="Common\Enums\SexState.cs" />
+    <Compile Include="Common\Response\ResultResponse.cs" />
     <Compile Include="Common\Tools\Tool.cs" />
     <Compile Include="Common\DB\SQL.cs" />
     <Compile Include="Global.asax.cs">
@@ -174,13 +175,7 @@
     <Compile Include="View\Query\StuQuery.aspx.designer.cs">
       <DependentUpon>StuQuery.aspx</DependentUpon>
     </Compile>
-    <Compile Include="View\Update\StuUpdate.aspx.cs">
-      <DependentUpon>StuUpdate.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="View\Update\StuUpdate.aspx.designer.cs">
-      <DependentUpon>StuUpdate.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="View\Update\UpdatePageController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\Constant\" />

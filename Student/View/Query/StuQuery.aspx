@@ -1,7 +1,9 @@
 ﻿<%@ Page Title="" Theme="Main" Language="C#" MasterPageFile="~/Master/MasterPager.Master" AutoEventWireup="true" CodeBehind="StuQuery.aspx.cs" Inherits="Student.Service.Query.StuQuery" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <input type="hidden" id="stu_query" />
     <div id="cont2">
         <div class="stu-item">
             <img src="https://teenyda-blog.oss-cn-shenzhen.aliyuncs.com/blog-image/avatar.jpg" />

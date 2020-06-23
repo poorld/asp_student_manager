@@ -1,4 +1,5 @@
 ﻿using Assets.Common.Tools;
+using Student.Common.DB;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -16,12 +17,33 @@ namespace Assets.DB
         /// </summary>
         public const string DATABASE_NAME = "student";
 
-        //public const string LocalDB = "student.mdf";
-        public const string LocalDB = "Database1.mdf";
+        public const string LocalDB = "student.mdf";
+        //public const string LocalDB = "Database1.mdf";
 
-        public static SqlConnection getLocalDB()
+        public static SqlConnection getConnByConfig()
+        {
+            switch (SQLConfig.connectType)
+            {
+                //数据库文件
+                case 1:
+                    return getLocalDB(SQLConfig.dbName);
+
+                //数据库
+                case 2:
+                    return getConnection(SQLConfig.dbName);
+                default:
+                    break;
+            }
+        }
+
+        public static SqlConnection getLocalDB(string dbName)
         {
             string dataDir = AppDomain.CurrentDomain.BaseDirectory;
+            if (string.IsNullOrEmpty(dbName))
+            {
+                throw new Exception("数据库名错误!");
+            }
+            dbName += ".mdf";
             if (dataDir.EndsWith(@"\bin\Debug\") || dataDir.EndsWith(@"\bin\Release\"))
             {
                 dataDir = System.IO.Directory.GetParent(dataDir).Parent.Parent.FullName;
@@ -40,8 +62,13 @@ namespace Assets.DB
             return sqlCon;
         }
 
-        public static SqlConnection getConnectionByLocal(string dbName)
+        public static SqlConnection getConnection(string dbName)
         {
+            if (string.IsNullOrEmpty(dbName))
+            {
+                throw new Exception("数据库名错误!");
+            }
+
             startMSSQLSERVER();
 
             string localHostName = Tool.getLocalHostName();
@@ -68,7 +95,7 @@ namespace Assets.DB
             return null;
         }
 
-        public static bool startMSSQLSERVER()
+        private static bool startMSSQLSERVER()
         {
             ServiceController sc = new ServiceController("MSSQLSERVER");
             //判断服务是否已经关闭
@@ -81,7 +108,7 @@ namespace Assets.DB
             return false;
         }
 
-        public static bool stopMSSQLSERVER()
+        private static bool stopMSSQLSERVER()
         {
             ServiceController sc = new ServiceController("MSSQLSERVER");
             //判断服务是否已经开启

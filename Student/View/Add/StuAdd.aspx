@@ -2,6 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <input type="hidden" id="stuSett" runat="server"/>
+    <input type="hidden" id="stuId" />
     <div id="stu-form">
         <div class="field">
             <div class="control">

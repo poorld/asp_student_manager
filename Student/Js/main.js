@@ -2,34 +2,55 @@
 $(document).ready(function () {
     setHeight();
     loadData();
-
+    checkUpdate();
 })
 
 function loadData() {
+    if(!$("#stu_query"))
+        return
+
+    $.ajax({
+        url: "/api/Student",
+        type: 'GET',
+        success: function(res){
+            //console.log(res)
+            let jsonArray = JSON.parse(res)
+
+            jsonArray.forEach(function(element){
+                buildElement(element)
+            })
+
+
+        }
+    })
+    
+}
+
+function buildElement(obj){
     let stringbuilder = new Array();
     stringbuilder.push("<div class='stu-item'>")
     stringbuilder.push("<img src='https://teenyda-blog.oss-cn-shenzhen.aliyuncs.com/blog-image/avatar.jpg' />");
     stringbuilder.push("<div class='info'>");
-    appendInfo(stringbuilder,"学号", "1915100104");
-    appendInfo(stringbuilder,"姓名", "露小哒哒");
-    appendInfo(stringbuilder,"性别", "男");
+    appendInfo(stringbuilder,"学号", obj.StuNo);
+    appendInfo(stringbuilder,"姓名", obj.StuName);
+    appendInfo(stringbuilder,"性别", obj.StuSex);
     stringbuilder.push("</div>");
 
     stringbuilder.push("<div class='info'>");
-    appendInfo(stringbuilder, "年级", "2017级");
-    appendInfo(stringbuilder, "专业", "计算机科学与技术");
-    appendInfo(stringbuilder, "班级", "计17计算机专升本1班");
+    appendInfo(stringbuilder, "年级", obj.StuGrade);
+    appendInfo(stringbuilder, "专业", obj.StuProfession);
+    appendInfo(stringbuilder, "班级", obj.StuClass);
     stringbuilder.push("</div>");
 
     stringbuilder.push("<div class='info'>");
-    appendInfo(stringbuilder, "籍贯", "广西");
-    appendInfo(stringbuilder, "联系方式", "15278389583");
-    appendInfo(stringbuilder, "住址", "广西容县杨梅镇凤美村2号");
+    appendInfo(stringbuilder, "籍贯", obj.StuNativePlace);
+    appendInfo(stringbuilder, "联系方式", obj.StuContact);
+    appendInfo(stringbuilder, "住址", obj.StuAddress);
     stringbuilder.push("</div>");
 
     stringbuilder.push("<div class='btn-op'>");
-    stringbuilder.push("<button class='button is-info is-light is-small'>修改</button>");
-    stringbuilder.push("<button class='button is-danger is-light is-small'>删除</button>");
+    stringbuilder.push("<button class='button is-info is-light is-small' onclick='updateStu("+ obj.StuId+")'>修改</button>");
+    stringbuilder.push("<button class='button is-danger is-light is-small' onclick='deleteStu("+ obj.StuId+")'>删除</button>");
     stringbuilder.push("</div>");
     stringbuilder.push("</div>");
     //console.log(stringbuilder);
@@ -112,8 +133,10 @@ mdl.addEventListener("modal:close", function () {
     console.log("closed")
 })
 
-//添加学生
+//添加学生 更新学生
 function submit() {
+
+
     let stu_no = $("#stu_no").val()
     let stu_name = $("#stu_name").val()
     let stu_sex = $("#stu_sex").val()
@@ -138,17 +161,83 @@ function submit() {
         stuAddress: stu_address
     }
 
-    $.ajax({
-        url: "/api/Student",
-        contentType: "application/json",
-        data: "'" + JSON.stringify(obj) + "'",
-        type: 'POST',
+    let action = $("#ContentPlaceHolder1_stuSett").val()
 
-        success: function(){
-            console.log("success")
+    // 更新
+    if (action !== "insert"){
+        obj.StuId = $("#stuId").val();
+        console.log(obj)
+        $.ajax({
+            url: "/api/Student",
+            contentType: "application/json",
+            data: "'" + JSON.stringify(obj) + "'",
+            type: 'PUT',
+
+            success: function(res){
+                console.log(res)
+                let resObj = JSON.parse(res)
+                if(resObj.msg === "success"){
+                    alert("更新成功!")
+                    window.location.href = "/View/Query/StuQuery.aspx"
+                }
+            }
+        })
+    }else{
+        //添加
+        console.log(obj)
+        $.ajax({
+            url: "/api/Student",
+            contentType: "application/json",
+            data: "'" + JSON.stringify(obj) + "'",
+            type: 'POST',
+
+            success: function(){
+                let resObj = JSON.parse(res)
+                if(resObj.msg === "success"){
+                    alert("添加成功!")
+                    window.location.href = "/View/Query/StuQuery.aspx"
+                }
+            }
+        })
+    }
+
+    
+
+}
+
+//修改学生
+function updateStu(stuId){
+
+    window.location.href = "/View/Add/StuAdd.aspx?action=update&id=" + stuId;
+
+    //$.ajax({
+    //    url: "/api/UpdatePage/" + stuId,
+    //    contentType: "application/json",
+    //    //data: "'" + JSON.stringify(obj) + "'",
+    //    type: 'PUT',
+
+    //    success: function(){
+    //        console.log("success")
+    //    }
+    //})
+}
+
+//删除学生
+function deleteStu(stuId){
+    $.ajax({
+        url: "/api/Student/" + stuId,
+        contentType: "application/json",
+        //data: "'" + JSON.stringify(obj) + "'",
+        type: 'DELETE',
+
+        success: function(res){
+            let resObj = JSON.parse(res)
+            if(resObj.msg === "success"){
+                alert("删除成功!")
+                window.location.reload()
+            }
         }
     })
-
 }
 
 //更改管理员密码
@@ -156,4 +245,36 @@ function updatePassword(){
     let admin_no = $("#admin_no").val()
     let admin_pass = $("#admin_pass").val()
 
+}
+
+function checkUpdate(){
+    let action = $("#ContentPlaceHolder1_stuSett").val()
+    // 添加
+    if (action == "insert"){
+
+    }else if(action){
+        //id
+        $.ajax({
+            url: "/api/Student/" + action,
+            contentType: "application/json",
+            //data: "'" + JSON.stringify(obj) + "'",
+            type: 'GET',
+
+            success: function(res){
+                let stu = JSON.parse(res)
+                console.log(stu)
+                $("#stuId").val(stu.StuId)
+                $("#stu_no").val(stu.StuNo) 
+                $("#stu_name").val(stu.StuName)
+                $("#stu_sex").val(stu.StuSex)
+                $("#stu_age").val(stu.StuAge)
+                $("#stu_grade").val(stu.StuGrade)
+                $("#stu_profession").val(stu.StuProfession)
+                $("#stu_class").val(stu.StuClass)
+                $("#stu_native_place").val(stu.StuNativePlace)
+                $("#stu_contact").val(stu.StuContact)
+                $("#stu_address").val(stu.StuAddress)
+            }
+        })
+    }
 }

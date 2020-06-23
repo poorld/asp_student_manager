@@ -116,7 +116,8 @@ namespace Assets.Common.Dao
         protected SqlConnection getConnection()
         {
             //SqlConnection conn = SQL.getConnectionByLocal(SQL.DATABASE_NAME);
-            SqlConnection conn = SQL.getLocalDB();
+
+            SqlConnection conn = SQL.getConnByConfig();
             conn.Open();
             return conn;
         }
@@ -486,7 +487,7 @@ namespace Assets.Common.Dao
 
 
 
-        public void buildInsertSql()
+        private void buildInsertSql()
         {
             List<string> fields = getTableFields();
             string cmd = String.Format("insert into {0}", tableName) + "(";
@@ -511,7 +512,7 @@ namespace Assets.Common.Dao
         /// 添加实体类至数据库
         /// </summary>
         /// <param name="t"></param>
-        public void insert(T t)
+        protected void insert(T t)
         {
             if (t == null)
                 return;
@@ -577,7 +578,7 @@ namespace Assets.Common.Dao
         /// 更新实体类(by id)
         /// </summary>
         /// <param name="t"></param>
-        public void update(T t)
+        protected void update(T t)
         {
             if (t == null)
                 return;

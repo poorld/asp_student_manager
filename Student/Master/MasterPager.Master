@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/App_Themes/Main/bulma.min.css">
 </head>
 <body>
-    <input type="hidden" id="control" />
+    
     <%--<form id="form1" runat="server">--%>
     <div class="tile is-ancestor">
       <div class="tile is-vertical is-12">
@@ -44,7 +44,7 @@
       </p>
       <ul class="menu-list">
         <li id="btn"><a  href="/View/Query/StuQuery.aspx">学生列表</a></li>
-        <li><a href="/View/Add/StuAdd.aspx">添加学生</a></li>
+        <li><a href="/View/Add/StuAdd.aspx?action=insert">添加学生</a></li>
       </ul>
       <p class="menu-label">
         Admin

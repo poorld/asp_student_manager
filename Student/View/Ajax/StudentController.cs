@@ -1,5 +1,6 @@
 ﻿using Assets.Common.Entity;
 using Newtonsoft.Json;
+using Student.Common.Response;
 using Student.Service;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Student.View.Ajax
     {
         StuDao dao = new StuDao(); 
 
+        //获取所有学生
         // GET api/<controller>
         public string Get()
         {
@@ -22,27 +24,39 @@ namespace Student.View.Ajax
             return json;
         }
 
+        //根据id获取学生
         // GET api/<controller>/5
         public string Get(int id)
         {
-            return "value";
+            
+            return JsonConvert.SerializeObject(dao.getStuById(id));
         }
 
+        //添加学生
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        public string Post([FromBody]string value)
         {
             StudentEntity stu = JsonConvert.DeserializeObject<StudentEntity>(value);
+            stu.StuId = dao.getId();
             dao.addStu(stu);
+            return JsonConvert.SerializeObject(new ResultResponse(200, "success"));
         }
 
+        //修改学生
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        public string Put([FromBody]string value)
         {
+            StudentEntity stu = JsonConvert.DeserializeObject<StudentEntity>(value);
+            dao.updateStu(stu);
+            return JsonConvert.SerializeObject(new ResultResponse(200, "success"));
         }
 
+        //删除学生
         // DELETE api/<controller>/5
-        public void Delete(int id)
+        public string Delete(int id)
         {
+            dao.deleteStu(id);
+            return JsonConvert.SerializeObject(new ResultResponse(200, "success"));
         }
     }
 }
