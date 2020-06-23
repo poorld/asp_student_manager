@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Student.Common.Constant;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -28,6 +29,21 @@ namespace Student
 
         }
 
+        public override void Init()
+        {
+            //注册事件
+            this.AuthenticateRequest += WebApiApplication_AuthenticateRequest;
+            base.Init();
+        }
+
+        //开启session支持
+        void WebApiApplication_AuthenticateRequest(object sender, EventArgs e)
+        {
+            //启用 webapi 支持session 会话
+            HttpContext.Current.SetSessionStateBehavior(System.Web.SessionState.SessionStateBehavior.Required);
+        }
+
+
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
 
@@ -43,9 +59,9 @@ namespace Student
             HttpSessionState session = HttpContext.Current.Session;
             if (session == null)
                 return;
-            if (!this.Request.Path.Contains("Login") && session["USER"] == null)
+            if (!this.Request.Path.Contains("Login") && session[SessionContant.LoginUser] == null)
             {
-                //Response.Redirect("/View/Login/Login.aspx");
+                Response.Redirect("/View/Login/Login.aspx");
             }
         }
 

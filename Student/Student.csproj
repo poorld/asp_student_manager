@@ -125,6 +125,7 @@
     <Compile Include="Common\Attributes\EnumFieldAttribute.cs" />
     <Compile Include="Common\Attributes\TableAliasAttribute.cs" />
     <Compile Include="Common\Attributes\TableFieldAttribute.cs" />
+    <Compile Include="Common\Constant\SessionContant.cs" />
     <Compile Include="Common\Dao\CommonDao.cs" />
     <Compile Include="Common\DB\SQLConfig.cs" />
     <Compile Include="Common\Entity\AdminEntity.cs" />
@@ -190,7 +191,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Common\Constant\" />
     <Folder Include="View\Update\" />
   </ItemGroup>
   <PropertyGroup>

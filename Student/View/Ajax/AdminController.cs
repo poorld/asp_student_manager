@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Assets.Common.Entity;
+using Newtonsoft.Json;
+using Student.Common.Constant;
 using Student.Common.Entity;
 using Student.Common.Response;
 using Student.Service;
@@ -16,6 +18,7 @@ namespace Student.View.Ajax
     public class AdminController : ApiController
     {
         AdminDao dao = new AdminDao();
+        StuDao stuDao = new StuDao();
 
         public string Get()
         {
@@ -37,13 +40,29 @@ namespace Student.View.Ajax
             AdminEntity admin = new AdminEntity();
             admin.AdminNo = login.Username;
             admin.AdminPass = login.Password;
-            AdminEntity adminEntity =  dao.login(admin);
-            if (adminEntity != null)
+            AdminEntity loginAdmin =  dao.login(admin);
+            if (loginAdmin != null)
             {
-
+                session.Add(SessionContant.LoginUser, loginAdmin);
+                session.Add(SessionContant.UserType, SessionContant.TypeAdmin);
+                return JsonConvert.SerializeObject(new ResultResponse(200, "success", "/View/Query/StuQuery.aspx"));
+            }
+            else
+            {
+                StudentEntity stu = new StudentEntity();
+                stu.StuNo = login.Username;
+                stu.StuName = login.Password;
+                StudentEntity loginStu = stuDao.login(stu);
+                if (loginStu != null)
+                {
+                    session.Add(SessionContant.LoginUser, loginStu);
+                    session.Add(SessionContant.UserType, SessionContant.TypeStudent);
+                    return JsonConvert.SerializeObject(new ResultResponse(200, "success", "/View/Query/StuQuery.aspx"));
+                }
             }
 
-            return "";
+
+            return JsonConvert.SerializeObject(new ResultResponse(500, "fail", "登陆失败"));
         }
         // PUT api/<controller>/5
         public string Put([FromBody]string value)

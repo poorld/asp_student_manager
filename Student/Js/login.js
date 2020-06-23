@@ -11,10 +11,13 @@
         data: "'" + JSON.stringify(obj) + "'",
         type: 'POST',
         success: function (res) {
+            console.log(res)
             let resObj = JSON.parse(res)
             if (resObj.msg === "success") {
                 alert("登录成功!")
-                //window.location.reload()
+                window.location.href = resObj.data
+            }else{
+                alert(resObj.data)
             }
         }
     })

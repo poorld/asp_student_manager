@@ -16,6 +16,11 @@ namespace Student.Service
             return students;
         }
 
+        public StudentEntity login(StudentEntity stu)
+        {
+            return base.selectByField(stu);
+        }
+
         public void addStu(StudentEntity stu)
         {
             base.insert(stu);

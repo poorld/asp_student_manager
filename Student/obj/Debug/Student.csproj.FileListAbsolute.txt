@@ -37,4 +37,3 @@ F:\Student\Student\bin\zh-Hans\System.Web.Http.WebHost.resources.dll
 F:\Student\Student\obj\Debug\Student.csprojResolveAssemblyReference.cache
 F:\Student\Student\obj\Debug\Student.dll
 F:\Student\Student\obj\Debug\Student.pdb
-F:\Student\Student\bin\Student.dll.config

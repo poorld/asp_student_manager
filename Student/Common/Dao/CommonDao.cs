@@ -808,6 +808,15 @@ namespace Assets.Common.Dao
                         if (p.GetValue(t) == null)
                             break;
 
+                        var type = p.PropertyType.Name;
+
+                        if (type.Equals("Int32"))
+                        {
+                            int val = Convert.ToInt32(p.GetValue(t));
+                            if (val == 0)
+                                break;
+                        }
+
                         object[] fieldObjs = p.GetCustomAttributes(typeof(TableFieldAttribute), true);
 
                         if (fieldObjs.Length > 0)
@@ -834,7 +843,15 @@ namespace Assets.Common.Dao
                 }
             }
 
-            sql += this.primaryKey + "=@" + this.primaryKey;
+            if (primaryKeyValue == null)
+            {
+                sql = sql.Substring(0, sql.Length - 5);
+            }
+            else
+            {
+                sql += this.primaryKey + "=@" + this.primaryKey;
+
+            }
 
 
             /////////////////////
@@ -848,6 +865,15 @@ namespace Assets.Common.Dao
 
                 if (o == null)
                     continue;
+
+                var type1 = p.PropertyType.Name;
+
+                if (type1.Equals("Int32"))
+                {
+                    int val = Convert.ToInt32(p.GetValue(t));
+                    if (val == 0)
+                        continue;
+                }
 
                 string field = string.Empty;
 
@@ -884,11 +910,17 @@ namespace Assets.Common.Dao
             //执行sql
             SqlDataReader sdr = com.ExecuteReader();
 
-            T t1 = foreachField(sdr);
+            if (sdr.Read())
+            {
 
-            closeConnection(conn);
+                T t1 = foreachField(sdr);
 
-            return t1;
+                closeConnection(conn);
+
+                return t1;
+
+            }
+            return null;
 
         }
 
