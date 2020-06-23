@@ -59,6 +59,15 @@ namespace Student
             HttpSessionState session = HttpContext.Current.Session;
             if (session == null)
                 return;
+
+            string type = (string)session[SessionContant.UserType];
+            object o = session[SessionContant.LoginUser];
+            if (this.Request.Path.Contains("Admin") && this.Request.HttpMethod.ToUpper().Equals("POST"))
+                return;
+
+            if (this.Request.Path.Contains("__browserLink"))
+                return;
+
             if (!this.Request.Path.Contains("Login") && session[SessionContant.LoginUser] == null)
             {
                 Response.Redirect("/View/Login/Login.aspx");

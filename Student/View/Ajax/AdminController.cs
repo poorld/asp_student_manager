@@ -64,6 +64,8 @@ namespace Student.View.Ajax
 
             return JsonConvert.SerializeObject(new ResultResponse(500, "fail", "登陆失败"));
         }
+
+        //修改管理员密码
         // PUT api/<controller>/5
         public string Put([FromBody]string value)
         {
@@ -72,10 +74,13 @@ namespace Student.View.Ajax
             return JsonConvert.SerializeObject(new ResultResponse(200, "success"));
         }
 
+        //退出登录（放这里了...
         // DELETE api/<controller>/5
-        public string Delete(int id)
+        public string Delete()
         {
-            return "";
+            HttpSessionState session = HttpContext.Current.Session;
+            session.Remove(SessionContant.LoginUser);
+            return JsonConvert.SerializeObject(new ResultResponse(200, "success"));
         }
     }
 }

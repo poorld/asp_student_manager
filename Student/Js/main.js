@@ -307,3 +307,16 @@ function checkUpdate(){
     }
 }
 
+function logout() {
+    $.ajax({
+        url: "/api/Admin",
+        contentType: "application/json",
+        type: 'DELETE',
+        success: function (res) {
+            let resObj = JSON.parse(res)
+            if (resObj.msg === "success") {
+                window.location.reload()
+            }
+        }
+    })
+}

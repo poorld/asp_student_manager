@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="title-right">
-                        欢迎您，智取棋！  <button class="button is-link is-light is-small">退出</button>
+                        欢迎您，智取棋！  <button class="button is-link is-light is-small" onclick="logout()">退出</button>
                     </div>
                 </div>
             </article>
