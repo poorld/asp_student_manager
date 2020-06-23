@@ -7,7 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
+using System.Web.SessionState;
 
 namespace Student.View.Ajax
 {
@@ -26,9 +28,21 @@ namespace Student.View.Ajax
             return "";
         }
 
+        //登录
         // POST api/<controller>
         public string Post([FromBody]string value)
         {
+            HttpSessionState session = HttpContext.Current.Session;
+            LoginEntity login = JsonConvert.DeserializeObject<LoginEntity>(value);
+            AdminEntity admin = new AdminEntity();
+            admin.AdminNo = login.Username;
+            admin.AdminPass = login.Password;
+            AdminEntity adminEntity =  dao.login(admin);
+            if (adminEntity != null)
+            {
+
+            }
+
             return "";
         }
         // PUT api/<controller>/5

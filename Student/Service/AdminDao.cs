@@ -10,9 +10,9 @@ namespace Student.Service
     public class AdminDao : CommonDao<AdminEntity>
     {
 
-        public void login(AdminEntity admin)
+        public AdminEntity login(AdminEntity admin)
         {
-
+            return base.selectByField(admin);
         }
 
         public void updatePassword(AdminEntity admin)

@@ -34,5 +34,6 @@
     </form>
 
     <script language="javascript" src="/Js/jquery-3.5.1.min.js"></script>
+    <script lang="javascript" src="/Js/login.js"></script>
 </body>
 </html>

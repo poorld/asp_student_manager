@@ -86,7 +86,7 @@ namespace Assets.Common.Dao
         /// <summary>
         /// 设置表格名称
         /// </summary>
-        protected void setTableName()
+        private void setTableName()
         {
             tableName = getEntityName();
         }
@@ -95,7 +95,7 @@ namespace Assets.Common.Dao
         /// 设置主键
         /// </summary>
         /// <param name="key"></param>
-        protected void setPrimaryKey(string key)
+        private void setPrimaryKey(string key)
         {
             primaryKey = key;
         }
@@ -103,7 +103,7 @@ namespace Assets.Common.Dao
         /// <summary>
         /// 初始化sql命令
         /// </summary>
-        protected void setSqlCmd()
+        private void setSqlCmd()
         {
             cmd_select_all = String.Format(cmd_select_all, tableName);
             cmd_select_by_id = String.Format(cmd_select_by_id, tableName, primaryKey);
@@ -113,7 +113,7 @@ namespace Assets.Common.Dao
         }
 
 
-        protected SqlConnection getConnection()
+        private SqlConnection getConnection()
         {
             //SqlConnection conn = SQL.getConnectionByLocal(SQL.DATABASE_NAME);
 
@@ -122,7 +122,7 @@ namespace Assets.Common.Dao
             return conn;
         }
 
-        protected void closeConnection(SqlConnection conn)
+        private void closeConnection(SqlConnection conn)
         {
             conn.Close();
         }
@@ -132,7 +132,7 @@ namespace Assets.Common.Dao
         /// 获取T的类名
         /// </summary>
         /// <returns></returns>
-        protected string getEntityName()
+        private string getEntityName()
         {
             Type type = typeof(T);
             string name = type.Name;//获取当前成员的名称
@@ -150,7 +150,7 @@ namespace Assets.Common.Dao
         /// <summary>
         /// 获取主键
         /// </summary>
-        protected void getPrimaryKey()
+        private void getPrimaryKey()
         {
             PropertyInfo[] peroperties = typeof(T).GetProperties();//BindingFlags.Public | BindingFlags.Instance
 
@@ -286,7 +286,7 @@ namespace Assets.Common.Dao
         /// <summary>
         /// 存放数据到 DataTable
         /// </summary>
-        protected List<T> findAllByDataTable()
+        private List<T> findAllByDataTable()
         {
             SqlConnection conn = getConnection();
 
@@ -347,7 +347,7 @@ namespace Assets.Common.Dao
         /// 使用特性的TableFieldAttribute字段与表字段对比
         /// </summary>
         /// <returns></returns>
-        protected List<T> findAllByDataTable1()
+        private List<T> findAllByDataTable1()
         {
             SqlConnection conn = getConnection();
 
@@ -445,7 +445,7 @@ namespace Assets.Common.Dao
         /// </summary>
         /// <param name="dr"></param>
         /// <returns></returns>
-        protected T foreachField(SqlDataReader dr)
+        private T foreachField(SqlDataReader dr)
         {
             T t = new T();
 
@@ -779,10 +779,10 @@ namespace Assets.Common.Dao
             //Console.WriteLine("Name:{0} Value:{1}", p.Name, p.GetValue(t));
         }
 
-        protected void selectByField(T t)
+        protected T selectByField(T t)
         {
             if (t == null)
-                return;
+                return t;
 
             //select * from tableName
             string sql = cmd_select_all;
@@ -882,9 +882,13 @@ namespace Assets.Common.Dao
             com.CommandText = sql;
 
             //执行sql
-            int res = com.ExecuteNonQuery();
+            SqlDataReader sdr = com.ExecuteReader();
+
+            T t1 = foreachField(sdr);
 
             closeConnection(conn);
+
+            return t1;
 
         }
 

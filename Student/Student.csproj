@@ -95,6 +95,7 @@
     <Content Include="App_Themes\Login\Login.css" />
     <Content Include="App_Themes\Main\main.css" />
     <Content Include="App_Themes\Image\login_bg.jpg" />
+    <Content Include="Js\login.js" />
     <Content Include="Js\main.js" />
     <Content Include="Js\tools.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -127,6 +128,7 @@
     <Compile Include="Common\Dao\CommonDao.cs" />
     <Compile Include="Common\DB\SQLConfig.cs" />
     <Compile Include="Common\Entity\AdminEntity.cs" />
+    <Compile Include="Common\Entity\LoginEntity.cs" />
     <Compile Include="Common\Entity\StudentEntity.cs" />
     <Compile Include="Common\Entity\TableEntity.cs" />
     <Compile Include="Common\Enums\SexState.cs" />
