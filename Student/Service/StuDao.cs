@@ -45,5 +45,14 @@ namespace Student.Service
         {
             base.delete(id);
         }
+
+        public void test()
+        {
+            StudentEntity s = new StudentEntity();
+            s.StuId = 1000;
+            s.StuName = "gg";
+            s.StuSex = "男";
+            base.selectByField(s);
+        }
     }
 }

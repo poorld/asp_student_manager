@@ -89,6 +89,7 @@
     </Content>
     <Content Include="App_Themes\Image\avator.jpg" />
     <Content Include="App_Themes\Main\bulma.min.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Js\jquery-3.5.1.min.js" />
     <Content Include="App_Themes\Login\Login.css" />
@@ -96,11 +97,16 @@
     <Content Include="App_Themes\Image\login_bg.jpg" />
     <Content Include="Js\main.js" />
     <Content Include="Js\tools.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="View\Admin\AdminSetting.aspx" />
     <Content Include="View\Login\Login.aspx" />
     <Content Include="packages.config" />
     <Content Include="Master\MasterPager.Master" />
     <Content Include="README.md" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -130,6 +136,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Service\AdminDao.cs" />
     <Compile Include="View\Admin\AdminSetting.aspx.cs">
       <DependentUpon>AdminSetting.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -137,6 +144,7 @@
     <Compile Include="View\Admin\AdminSetting.aspx.designer.cs">
       <DependentUpon>AdminSetting.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\Ajax\AdminController.cs" />
     <Compile Include="View\Ajax\StudentController.cs" />
     <Compile Include="View\Login\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -168,6 +176,9 @@
       <DependentUpon>StuDelete.aspx</DependentUpon>
     </Compile>
     <Compile Include="Service\StuDao.cs" />
+    <Compile Include="View\Logout\Logout.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="View\Query\StuQuery.aspx.cs">
       <DependentUpon>StuQuery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -175,10 +186,10 @@
     <Compile Include="View\Query\StuQuery.aspx.designer.cs">
       <DependentUpon>StuQuery.aspx</DependentUpon>
     </Compile>
-    <Compile Include="View\Update\UpdatePageController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\Constant\" />
+    <Folder Include="View\Update\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

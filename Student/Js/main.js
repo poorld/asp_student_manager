@@ -244,7 +244,35 @@ function deleteStu(stuId){
 function updatePassword(){
     let admin_no = $("#admin_no").val()
     let admin_pass = $("#admin_pass").val()
+    let admin_pass_confirm = $("#admin_pass_confirm").val()
+    if (!admin_pass || !admin_pass_confirm) {
+        alert("请输入密码")
+        return
+    }
 
+    if (admin_pass !== admin_pass_confirm) {
+        alert("密码不一致")
+        return
+    }
+
+    let obj = {
+        adminNo: admin_no,
+        adminPass: admin_pass
+    }
+
+    $.ajax({
+        url: "/api/Admin",
+        contentType: "application/json",
+        data: "'" + JSON.stringify(obj) + "'",
+        type: 'PUT',
+        success: function (res) {
+            let resObj = JSON.parse(res)
+            if (resObj.msg === "success") {
+                alert("修改成功!")
+                window.location.reload()
+            }
+        }
+    })
 }
 
 function checkUpdate(){
@@ -277,4 +305,10 @@ function checkUpdate(){
             }
         })
     }
+}
+
+function login() {
+    let username = $("#username").val()
+    let password = $("#password").val()
+
 }

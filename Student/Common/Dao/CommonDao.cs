@@ -779,6 +779,118 @@ namespace Assets.Common.Dao
             //Console.WriteLine("Name:{0} Value:{1}", p.Name, p.GetValue(t));
         }
 
+        protected void selectByField(T t)
+        {
+            if (t == null)
+                return;
+
+            //select * from tableName
+            string sql = cmd_select_all;
+
+            sql += " where ";
+
+            List<string> fields = getTableFields();
+            SqlConnection conn = getConnection();
+
+            object primaryKeyValue = null;
+
+            SqlCommand com = new SqlCommand(cmd_insert_all, conn);
+
+            //遍历p的属性
+            foreach (System.Reflection.PropertyInfo p in t.GetType().GetProperties())
+            {
+                //遍历表的字段
+                foreach (string field in fields)
+                {
+                    if (p.Name.Equals(Tool.analysisFieldName(field)))
+                    {
+
+                        if (p.GetValue(t) == null)
+                            break;
+
+                        object[] fieldObjs = p.GetCustomAttributes(typeof(TableFieldAttribute), true);
+
+                        if (fieldObjs.Length > 0)
+                        {
+                            //主键 true false
+                            bool primaryKey = ((TableFieldAttribute)fieldObjs[0]).PrimaryKey;
+                            if (primaryKey)
+                            {
+                                primaryKeyValue = p.GetValue(t);
+                                break;
+
+                            }
+                            else
+                            {
+                                string fieldName = ((TableFieldAttribute)fieldObjs[0]).FieldName;
+                                sql += fieldName + "=@" + fieldName + " and ";
+                                break;
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+
+            sql += this.primaryKey + "=@" + this.primaryKey;
+
+
+            /////////////////////
+            /// Parameters赋值
+            /////////////////////
+
+            //遍历p的属性
+            foreach (System.Reflection.PropertyInfo p in t.GetType().GetProperties())
+            {
+                object o = p.GetValue(t);
+
+                if (o == null)
+                    continue;
+
+                string field = string.Empty;
+
+                object[] fieldObjs = p.GetCustomAttributes(typeof(TableFieldAttribute), true);
+
+                if (fieldObjs.Length > 0)
+                {
+                    //主键 true false
+                    field = ((TableFieldAttribute)fieldObjs[0]).FieldName;
+
+                }
+
+
+                object[] objs = p.GetCustomAttributes(typeof(EnumFieldAttribute), true);
+
+                //如果有枚举关联 转换为数值 已启用->1
+                if (objs.Length > 0)
+                {
+                    object value = p.GetValue(t);
+                    Type type = ((EnumFieldAttribute)objs[0]).EnumClazz;
+
+                    Enum e = (Enum)Enum.Parse(type, Convert.ToString(value));
+
+                    com.Parameters.Add(new SqlParameter("@" + field, Convert.ToInt32(e)));
+                }
+                else
+                {
+                    com.Parameters.Add(new SqlParameter("@" + field, p.GetValue(t)));
+                }
+            }
+
+            com.CommandText = sql;
+
+            //执行sql
+            int res = com.ExecuteNonQuery();
+
+            closeConnection(conn);
+
+        }
+
     }
+
+
+    
 
 }

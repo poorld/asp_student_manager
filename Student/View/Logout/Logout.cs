@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
-namespace Student.Login
+namespace Student.View.Logout
 {
-    public partial class Login : System.Web.UI.Page
+    public class Logout : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

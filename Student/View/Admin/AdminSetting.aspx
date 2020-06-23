@@ -6,14 +6,21 @@
         <div class="field">
             <div class="control">
                 <label for="admin_no">帐号</label>
-                <input class="input is-primary is-small" id="admin_no" type="text" disabled/>
+                <input class="input is-primary is-small" id="admin_no" type="text" value="admin" disabled/>
             </div>
         </div>
 
         <div class="field">
             <div class="control">
                 <label for="admin_pass">密码</label>
-                <input class="input is-primary is-small" id="admin_pass" type="text" placeholder="输入密码" />
+                <input class="input is-primary is-small" id="admin_pass" type="password" placeholder="输入密码" />
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <label for="admin_pass">确认密码</label>
+                <input class="input is-primary is-small" id="admin_pass_confirm" type="password" placeholder="再次输入密码" />
             </div>
         </div>
 

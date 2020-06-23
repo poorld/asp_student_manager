@@ -36,9 +36,10 @@ namespace Student.View.Ajax
         // POST api/<controller>
         public string Post([FromBody]string value)
         {
-            StudentEntity stu = JsonConvert.DeserializeObject<StudentEntity>(value);
-            stu.StuId = dao.getId();
-            dao.addStu(stu);
+            //StudentEntity stu = JsonConvert.DeserializeObject<StudentEntity>(value);
+            //stu.StuId = dao.getId();
+            //dao.addStu(stu);
+            dao.test();
             return JsonConvert.SerializeObject(new ResultResponse(200, "success"));
         }
 

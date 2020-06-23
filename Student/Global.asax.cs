@@ -6,9 +6,10 @@ using System.Web.Http;
 using System.Web.Security;
 using System.Web.SessionState;
 
+
 namespace Student
 {
-    public class Global : System.Web.HttpApplication
+    public class Global : System.Web.HttpApplication, IRequiresSessionState
     {
 
         protected void Application_Start(object sender, EventArgs e)
@@ -34,7 +35,18 @@ namespace Student
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
+            
+        }
 
+        protected void Application_AcquireRequestState(object sender, EventArgs e)
+        {
+            HttpSessionState session = HttpContext.Current.Session;
+            if (session == null)
+                return;
+            if (!this.Request.Path.Contains("Login") && session["USER"] == null)
+            {
+                //Response.Redirect("/View/Login/Login.aspx");
+            }
         }
 
         protected void Application_Error(object sender, EventArgs e)
