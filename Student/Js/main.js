@@ -191,7 +191,7 @@ function submit() {
             data: "'" + JSON.stringify(obj) + "'",
             type: 'POST',
 
-            success: function(){
+            success: function (res) {
                 let resObj = JSON.parse(res)
                 if(resObj.msg === "success"){
                     alert("添加成功!")
