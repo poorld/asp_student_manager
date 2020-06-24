@@ -122,6 +122,20 @@ article .title {
     line-height: 30px;
 }
 
+.card{
+    width: 50%;
+}
+
+.content span{
+    background-color: burlywood;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+#myModal{
+    width: 300px;
+    height: 300px;
+}
 
 /*#cont-left a{
     display: block;

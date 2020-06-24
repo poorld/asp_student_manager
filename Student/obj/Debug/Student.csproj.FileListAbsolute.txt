@@ -4,23 +4,6 @@ C:\Users\teenyda\Documents\Visual Studio 2015\Projects\Student\Student\bin\Stude
 C:\Users\teenyda\Documents\Visual Studio 2015\Projects\Student\Student\bin\Student.pdb
 C:\Users\teenyda\Documents\Visual Studio 2015\Projects\Student\Student\obj\Debug\Student.dll
 C:\Users\teenyda\Documents\Visual Studio 2015\Projects\Student\Student\obj\Debug\Student.pdb
-E:\Student\Student\bin\Student.dll.config
-E:\Student\Student\bin\Student.dll
-E:\Student\Student\bin\Student.pdb
-E:\Student\Student\obj\Debug\Student.csprojResolveAssemblyReference.cache
-E:\Student\Student\obj\Debug\Student.dll
-E:\Student\Student\obj\Debug\Student.pdb
-E:\Student\Student\bin\Newtonsoft.Json.dll
-E:\Student\Student\bin\System.Net.Http.Formatting.dll
-E:\Student\Student\bin\System.Web.Http.dll
-E:\Student\Student\bin\System.Web.Http.WebHost.dll
-E:\Student\Student\bin\Newtonsoft.Json.xml
-E:\Student\Student\bin\System.Net.Http.Formatting.xml
-E:\Student\Student\bin\System.Web.Http.xml
-E:\Student\Student\bin\System.Web.Http.WebHost.xml
-E:\Student\Student\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
-E:\Student\Student\bin\zh-Hans\System.Web.Http.resources.dll
-E:\Student\Student\bin\zh-Hans\System.Web.Http.WebHost.resources.dll
 F:\Student\Student\bin\Student.dll
 F:\Student\Student\bin\Student.pdb
 F:\Student\Student\bin\Newtonsoft.Json.dll
@@ -38,3 +21,19 @@ F:\Student\Student\obj\Debug\Student.csprojResolveAssemblyReference.cache
 F:\Student\Student\obj\Debug\Student.dll
 F:\Student\Student\obj\Debug\Student.pdb
 F:\Student\Student\bin\Student.dll.config
+E:\Student\Student\bin\Student.dll.config
+E:\Student\Student\bin\Student.dll
+E:\Student\Student\bin\Student.pdb
+E:\Student\Student\bin\Newtonsoft.Json.dll
+E:\Student\Student\bin\System.Net.Http.Formatting.dll
+E:\Student\Student\bin\System.Web.Http.dll
+E:\Student\Student\bin\System.Web.Http.WebHost.dll
+E:\Student\Student\bin\Newtonsoft.Json.xml
+E:\Student\Student\bin\System.Net.Http.Formatting.xml
+E:\Student\Student\bin\System.Web.Http.xml
+E:\Student\Student\bin\System.Web.Http.WebHost.xml
+E:\Student\Student\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
+E:\Student\Student\bin\zh-Hans\System.Web.Http.resources.dll
+E:\Student\Student\bin\zh-Hans\System.Web.Http.WebHost.resources.dll
+E:\Student\Student\obj\Debug\Student.dll
+E:\Student\Student\obj\Debug\Student.pdb

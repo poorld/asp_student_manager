@@ -57,7 +57,7 @@ namespace Student.View.Ajax
                 {
                     session.Add(SessionContant.LoginUser, loginStu);
                     session.Add(SessionContant.UserType, SessionContant.TypeStudent);
-                    return JsonConvert.SerializeObject(new ResultResponse(200, "success", "/View/Query/StuQuery.aspx"));
+                    return JsonConvert.SerializeObject(new ResultResponse(200, "success", "/View/Student/Student.aspx"));
                 }
             }
 

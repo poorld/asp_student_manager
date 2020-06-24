@@ -743,7 +743,15 @@ namespace Assets.Common.Dao
         {
             if (p.PropertyType == typeof(string))
             {
-                p.SetValue(t, value);
+                if (string.IsNullOrEmpty(Convert.ToString(value)))
+                {
+                    p.SetValue(t, string.Empty);
+                }
+                else
+                {
+                    p.SetValue(t, value);
+
+                }
             }
             if (p.PropertyType == typeof(int) || p.PropertyType == typeof(uint))
             {

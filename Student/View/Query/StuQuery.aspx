@@ -54,7 +54,7 @@
 
                 <p>
                     <span class="span-txt">住址</span>
-                    <span class="stu-value">广西容县杨梅镇凤美村2号</span>
+                    <span class="stu-value">南宁师范大学4-217</span>
                 </p>
             </div>
 

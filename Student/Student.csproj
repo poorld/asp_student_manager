@@ -88,15 +88,18 @@
       <DependentUpon>student.mdf</DependentUpon>
     </Content>
     <Content Include="App_Themes\Image\avator.jpg" />
+    <Content Include="App_Themes\Image\dzq.jpg" />
     <Content Include="App_Themes\Main\bulma.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Js\all.js" />
     <Content Include="Js\jquery-3.5.1.min.js" />
     <Content Include="App_Themes\Login\Login.css" />
     <Content Include="App_Themes\Main\main.css" />
     <Content Include="App_Themes\Image\login_bg.jpg" />
     <Content Include="Js\login.js" />
     <Content Include="Js\main.js" />
+    <Content Include="Js\stu.js" />
     <Content Include="Js\tools.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -108,6 +111,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Master\StuMasterPager.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -119,6 +123,8 @@
     <Content Include="View\Add\StuAdd.aspx" />
     <Content Include="View\Delete\StuDelete.aspx" />
     <Content Include="View\Query\StuQuery.aspx" />
+    <Content Include="View\Student\Student.aspx" />
+    <Content Include="View\Student\StuUpdate.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +145,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Master\StuMasterPager.Master.cs">
+      <DependentUpon>StuMasterPager.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\StuMasterPager.Master.designer.cs">
+      <DependentUpon>StuMasterPager.Master</DependentUpon>
+    </Compile>
     <Compile Include="Service\AdminDao.cs" />
     <Compile Include="View\Admin\AdminSetting.aspx.cs">
       <DependentUpon>AdminSetting.aspx</DependentUpon>
@@ -148,6 +161,7 @@
       <DependentUpon>AdminSetting.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Ajax\AdminController.cs" />
+    <Compile Include="View\Ajax\StuController.cs" />
     <Compile Include="View\Ajax\StudentController.cs" />
     <Compile Include="View\Login\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -189,10 +203,22 @@
     <Compile Include="View\Query\StuQuery.aspx.designer.cs">
       <DependentUpon>StuQuery.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\Student\Student.aspx.cs">
+      <DependentUpon>Student.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Student\Student.aspx.designer.cs">
+      <DependentUpon>Student.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Student\StuUpdate.aspx.cs">
+      <DependentUpon>StuUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Student\StuUpdate.aspx.designer.cs">
+      <DependentUpon>StuUpdate.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\Update\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
